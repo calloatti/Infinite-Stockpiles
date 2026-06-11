@@ -50,7 +50,7 @@ namespace Calloatti.InfiniteStockpiles
       {
         _inventory.InventoryStockChanged += OnInventoryStockChanged;
       }
-      
+
       if (_allower != null)
       {
         _allower.DisallowedGoodsChanged += OnDisallowedGoodsChanged;
@@ -68,14 +68,14 @@ namespace Calloatti.InfiniteStockpiles
       {
         _inventory.InventoryStockChanged -= OnInventoryStockChanged;
       }
-      
+
       if (_allower != null)
       {
         _allower.DisallowedGoodsChanged -= OnDisallowedGoodsChanged;
       }
     }
 
-    private void OnInventoryStockChanged(object sender, InventoryAmountChangedEventArgs e)
+    private void OnInventoryStockChanged(object sender, InventoryStockChangedEventArgs e)
     {
       ResetToFiftyPercent();
     }
@@ -93,7 +93,7 @@ namespace Calloatti.InfiniteStockpiles
       try
       {
         string goodId = (_allower != null && _allower.HasAllowedGood) ? _allower.AllowedGood : null;
-        
+
         // 1. Delete old/unwanted goods from THIS specific inventory when the filter changes
         foreach (GoodAmount stock in _inventory.Stock.ToList())
         {
@@ -102,7 +102,7 @@ namespace Calloatti.InfiniteStockpiles
             int unreserved = _inventory.UnreservedAmountInStock(stock.GoodId);
             if (unreserved > 0)
             {
-              _inventory.Take(new GoodAmount(stock.GoodId, unreserved));
+              _inventory.TakeExisting(new GoodAmount(stock.GoodId, unreserved));
             }
           }
         }
@@ -118,7 +118,7 @@ namespace Calloatti.InfiniteStockpiles
             if (currentAmount < halfCapacity)
             {
               int amountToAdd = halfCapacity - currentAmount;
-              _inventory.GiveIgnoringCapacity(new GoodAmount(goodId, amountToAdd));
+              _inventory.GiveExistingIgnoringCapacity(new GoodAmount(goodId, amountToAdd));
             }
             else if (currentAmount > halfCapacity)
             {
@@ -128,7 +128,7 @@ namespace Calloatti.InfiniteStockpiles
 
               if (amountToTake > 0)
               {
-                _inventory.Take(new GoodAmount(goodId, amountToTake));
+                _inventory.TakeExisting(new GoodAmount(goodId, amountToTake));
               }
             }
           }
