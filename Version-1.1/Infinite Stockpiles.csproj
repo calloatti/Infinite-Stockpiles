@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>infinitestockpiles</AssemblyName>
+    <RootNamespace>Calloatti.InfiniteStockpiles</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="CommonModSettings.props" />
+
+  <ItemGroup>
+    <!-- Changed 'Exclude' to 'Remove' to successfully unpublicize these specific assemblies -->
+    <Publicize Remove="Timberborn.InventorySystem" />
+    <Publicize Remove="Timberborn.Stockpiles" />
+  </ItemGroup>
+
+</Project>

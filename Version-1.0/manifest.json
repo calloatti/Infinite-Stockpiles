@@ -1,0 +1,9 @@
+{
+  "Name": "Infinite Stockpiles (Dev Tool)",
+  "Version": "1.0.0",
+  "Id": "Calloatti.InfiniteStockpiles",
+  "MinimumGameVersion": "1.0.12.5",
+  "Description": "Keeps all storage buildings 50% full",
+  "RequiredMods": [],
+  "OptionalMods": []
+}
