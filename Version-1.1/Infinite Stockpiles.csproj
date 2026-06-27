@@ -7,6 +7,10 @@
 
   <Import Project="CommonModSettings.props" />
 
+  <PropertyGroup>
+    <TimberbornPath>C:\Program Files (x86)\Steam\steamapps\common\timberborn_experimental\Timberborn_Data\Managed</TimberbornPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <!-- Changed 'Exclude' to 'Remove' to successfully unpublicize these specific assemblies -->
     <Publicize Remove="Timberborn.InventorySystem" />
